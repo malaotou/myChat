@@ -1,0 +1,11 @@
+<!-- <p>
+  {{company|json}}
+</p>
+<span>{{companyInfo|json}}</span> -->
+
+<div *ngFor="let item of companyInfo" >
+  <div class="comlogo"><img [src]="getGroupLogoString(item.fileaddress)" width="50" height="50" alt="" /></div>
+  <div class="comdetails">{{item.name}} {{item.description}}</div>
+
+  <div class="btnsub"><input class="sendbtn" type="button" value="发送消息"  (click)="chat(item.id)" /></div>
+</div>

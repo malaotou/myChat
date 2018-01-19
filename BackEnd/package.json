@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "servervice"
+  ],
+  "author": "malei",
+  "license": "ISC",
+  "dependencies": {
+    "FileReader": "^0.10.2",
+    "express": "^4.16.2",
+    "fluent-ffmpeg": "^2.1.2",
+    "images": "^3.0.1",
+    "sequelize": "^4.31.2",
+    "socket.io": "^2.0.4"
+  }
+}

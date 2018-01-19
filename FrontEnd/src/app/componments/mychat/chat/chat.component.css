@@ -1,0 +1,287 @@
+:host {
+    width: 100%;
+    height: 1000px;
+    display: block;
+    overflow: hidden;
+}
+
+.talk-cont-bar {
+    cursor: pointer;
+}
+
+
+/* .msg-container-base::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+  }
+.msg-container-base::-webkit-scrollbar {
+    width: 12px;
+    background-color: #ccc;
+  }
+.msg-container-base::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #555;
+  } */
+
+
+/* .right-top-panel{
+  height: 60%;
+} */
+
+.msg-container-base {
+    margin: 0;
+    /* padding: 0 10px 10px;*/
+    /* height: 100%;
+      max-height: 348px; */
+    /* max-height: 100%; */
+    overflow-x: hidden;
+    position: absolute;
+    top: 38px;
+    bottom: 0px;
+    height: auto;
+}
+
+.btn {
+    margin: 0 10px 5px;
+    width: 100px;
+    border: 1px solid #066eb4
+}
+
+.btn:hover,
+.btn:visited,
+.btn:focus {
+    color: #fff
+}
+
+.nav-tabs {
+    padding-left: 5px;
+    -webkit-app-region: drag
+}
+
+.nav-tabs>li>a {
+    padding: 5px 10px;
+    width: 100px;
+    text-align: center;
+    font-size: 14px;
+    color: #555
+}
+
+.nav-tabs>li.active>a {
+    border-radius: 0;
+}
+
+.dropdown {
+    width: auto;
+    float: right
+}
+
+.dropdown>a {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold
+}
+
+.nav-tabs>li.dropdown>a {
+    width: auto;
+}
+
+.nav .open>a,
+.nav .open>a:hover,
+.nav .open>a:focus {
+    border: 1px solid #ddd;
+    border-radius: 0
+}
+
+ul.dropdown-menu {
+    float: none;
+    left: auto;
+    right: 0;
+    -webkit-app-region: no-drag
+}
+
+.modal-dialog {
+    width: 300px !important;
+    float: right;
+    margin: 43px 0 0 0 !important
+}
+
+.modal-content {
+    border-radius: 0 !important
+}
+
+.modal-body {
+    padding: 0 5px !important
+}
+
+.search-bar {
+    margin: 5px 10px;
+    width: auto;
+    height: auto;
+    overflow: hidden
+}
+
+.modal-footer {
+    padding: 5px !important
+}
+
+.img-list li {
+    position: relative;
+    width: 70px;
+    padding: 5px 5px 0;
+}
+
+.img-list li img {
+    width: 50px;
+    height: 50px;
+}
+
+.img-list li span {
+    margin: 0 auto;
+    width: 50px;
+}
+
+.check-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px
+}
+
+.img-list li label.check-box span {
+    width: 20px;
+    line-height: 20px;
+}
+
+.search-bar input {
+    height: 35px
+}
+
+.modal-header {
+    padding: 5px 10px
+}
+
+.modal-title {
+    font-size: 14px;
+}
+
+.check-box input[type="radio"] {
+    display: none
+}
+
+.dropdown-toggle {
+    -webkit-app-region: no-drag
+}
+
+.emoji-toggle-button {
+    font-style: normal;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 2.2rem;
+    user-select: none;
+}
+
+.btnOk {
+    width: 50px;
+    background: red;
+    margin-right: 10px;
+}
+
+.talk-user-img {
+    width: 48px;
+    height: 48px
+}
+
+.talk-cont {
+    clear: both;
+    display: inline-block;
+}
+
+.fileimage {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+.talk-file {
+    display: table-row;
+    align-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.talk-cont.talk-file.talk-img {
+    display: table-cell;
+    align-content: center;
+    align-items: center;
+}
+
+.talk-cont .talk-file .talk-fileinfo {
+    display: table-cell;
+    align-content: center;
+    align-items: center;
+    padding-left: 5px;
+    padding-top: 0px;
+}
+
+.talk-cont .talk-file .talk-fileinfo .filename {
+    align-content: center;
+    align-items: center;
+    margin-top: 0px;
+}
+
+.talk-cont .talk-file .talk-fileinfo .filesize {
+    margin-top: 0px;
+    align-content: center;
+    align-items: center;
+}
+
+.selectfile {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.inputor {
+    height: 50%;
+    width: 100%;
+    border: 1px solid #dadada;
+    /* border-radius: 4px; 
+  padding: 5px 8px;
+  outline: 0 none;
+  margin: 10px 0;*/
+    background: white;
+    font-size: inherit;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.inputor:focus {
+    border: 1px solid rgb(6, 150, 247);
+}
+
+.inputor span {
+    color: #3366FF;
+}
+
+.filefolder:hover {
+    background-image: url('/assets/images/Folder_over.svg');
+}
+
+.talk-cont img {
+    height: 30px;
+    width: 30px;
+}
+.talk-cont-sys{
+    text-align: center;
+    margin: auto;
+    background: rgb(162, 163, 162);
+    border: 1px solid rgb(162, 163, 162);
+    padding: 10px;
+    box-sizing:border-box;
+    border-collapse: collapse;
+    border-radius: 5px;
+    color:white;
+}

@@ -1,0 +1,101 @@
+:host{
+    /* width: 100%; */
+    height: 100%;
+    display: block;
+    margin-left: 280px;
+}
+/* .myinfo-title, .myinfo-content{
+    padding: 42px 80px 0px;
+    margin-left: 280px;
+}
+.myinfo-title span{
+    display: block;
+    text-align: center;
+    color: #726F6F;
+    font-size: 22px;
+    border-bottom: 1px solid #95989a;
+    padding-bottom: 20px; 
+    font-weight: lighter;
+} */
+.error{
+    background: red !important;
+    height: 300px;
+    display: block;
+}
+.logo-img{
+    border-radius:5px;
+    margin:10px;
+    border:1px solid #d4d4d4;
+    height: 100px;
+    width: 100px;
+
+}
+/* .text{
+    border: 1px solid #d2d2d2;
+    background-color: #ffffff;
+    height: 30px;
+    padding: 3px 6px;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 15px
+} */
+input[ type='text']{ height: 40px}
+textarea.text{ height: 100px;}
+.list-panel{ margin-top: 30px; width: 100%; height: auto;  overflow: hidden; }
+.myinfo-footer{ margin-top: 20px; padding-top: 20px}
+.myinfo-content{ padding-top: 20px}
+.alert{ position: absolute; top:0; left: 0; border-radius: 0; width: 100%} 
+.btn-member{ float: left; margin: 0}
+.modal-cont-left{ border-right:1px solid #ddd }
+.modal-cont-left, .modal-cont-right{ width: 299px; height: 400px; float: left }
+.modal-body{ padding: 0; overflow: hidden}
+.modal-title,.btn{ font-size:14px }
+.modal-header,.modal-footer{ padding: 10px}
+.search-bar{ margin: 0; width:auto; height: auto; padding: 10px; overflow: hidden}
+.search-bar input{ width: 100%; height: 30px}
+.modal-footer{ width: 100%;height: auto; overflow: hidden}
+.list-panel{ margin: 0; height: 350px; overflow: hidden}
+.data-list{ height: 100%; overflow-y: auto}
+.com-logo{ width: 40px; height: 40px;}
+.data-list ul li a{ padding: 5px}
+.user-name{ height: 40px; line-height: 40px; font-size: 14px;}
+.check-box{ margin: 10px; width: 20px; height: 20px; line-height: 20px; text-align: center; border-radius:20px;  float: right; display: block; cursor: pointer; /*border: 1px solid #ccc; border-radius:20px;  background: #fff*/ }
+
+.modal-cont-right div.list-panel{ height: 100%; overflow: hidden}
+.modal-cont-right div.list-panel a{ cursor:default}
+.checked-box-del{ cursor: pointer; color: #888; background: #ddd; border: 1px solid #ccc}
+.checked-box-del:hover{ background: #ccc;}
+.msg-sub{ padding: 10px; }
+.modal-cont{ padding: 20px; text-align: center; overflow: hidden}
+.modal-cont input{ width: 200px; height: 34px; padding: 0 3px;  border: 1px solid #ccc; border-radius:4px; }
+#invite-Modal{ margin-top: 20%}
+.list-team{ margin-top: 20px; height: 50%}
+
+
+
+/*表单验证样式，输入框前面加绿条与红条*/
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948!important; /* green */
+  }
+ 
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #e93835; /* red */
+  }
+
+  .groupitem:hover .deleteStyle{
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      display: block;
+     
+      /* width: 400px;
+      height: 400px; */
+  }
+  .deleteStyle{
+    width: 20px;
+    height: 20px;
+    display: none;
+    position: absolute; 
+    z-index: 1;
+    border: none;
+}

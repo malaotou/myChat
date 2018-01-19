@@ -1,0 +1,306 @@
+<div id="right-panel" class="right-panel  " (dragover)="dragfile($event)" (drop)="dropfile($event)">
+  <div class="right-top-panel   ">
+    <ul class="nav nav-tabs" *ngIf="currentSendtype==2||currentSendtype==3||currentSendtype==5">
+      <li [class]="currentSendtype==3?'active':''" (click)='changeMessageSendtype(3)'>
+        <a href="#team" data-toggle="tab" style="-webkit-app-region:no-drag">
+          协作
+        </a>
+      </li>
+      <li [class]="currentSendtype==2?'active':''" (click)='changeMessageSendtype(2)'>
+        <a href="#customer" data-toggle="tab" style="-webkit-app-region:no-drag">客户</a>
+      </li>
+      <li>
+        <input class="btn" style="-webkit-app-region:no-drag" type="button" (click)="closeService()" value="关闭服务" />
+      </li>
+      <li class="dropdown" *ngIf="this.chatRoom.admin">
+        <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">...
+          <!-- <b class="caret"></b> -->
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+          <li>
+            <a href="#member" tabindex="-1" data-toggle="modal" data-target="#member">团队成员</a>
+          </li>
+          <li *ngIf="this.chatRoom.ProfessionalId==null||this.chatRoom.ProfessionalId==undefined">
+            <a href="#bill" tabindex="-1" data-toggle="modal" data-target="#bill">指派单据</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <div id="listviwe" class="talk-panel msg-container-base tab-content ">
+      <div id="team" class=" talk-list tab-pane" [class.active]="currentSendtype==3" *ngIf="currentSendtype!=1&&currentSendtype!=4">
+        <ul>
+          <li *ngFor="let msg of cooperativeMsgList" [ngClass]="{talkright: currentUser.id==msg.SendUserId}">
+            <!--显示系统消息-->
+            <div *ngIf="msg.SendUserId==0" style="text-align: center">
+              <div style="height:36px">
+                {{msg.created_date| date: 'yyyy/MM/dd HH:mm:ss' }}
+              </div>
+              <div style="height:36px">
+                <span class="talk-cont-sys">
+                  {{msg.Content}}
+                <!--客服接单-->
+                <span *ngIf="msg.Content.indexOf('为待选客服')>0 && currentSendtype==3">
+                    ，请<a href="javascript:void(0)" (click)="OrderReceiving()">确定</a>接单。
+                </span>
+                  
+                  <!-- <input *ngIf="(msg.Content.indexOf('关闭了服务单')>0||msg.Content.indexOf('请确认或重新打开')>0) && currentSendtype==1" (click)="confirmService()" class="btnOk" type="button"
+                  value="确定" />
+                <input *ngIf="(msg.Content.indexOf('关闭了服务单')>0||msg.Content.indexOf('请确认或重新打开')>0) && currentSendtype==1" (click)="customerOpenService()" class="btnOk" type="button"
+                  value="取消" /> -->
+                  
+                </span>
+              </div>
+
+            </div>
+            <!--非系统消息-->
+            <div *ngIf="msg.SendUserId!=0">
+              <div class="talk-user-img">
+                <img [src]="getUserLogoString(msg.fileaddress)" width="48" height="48" alt="" />
+              </div>
+              <!-- 正常消息 -->
+              <div *ngIf="msg.MessageType==0" class="talk-cont-bar">
+                <div class="talk-user-name">
+                  <!-- {{msg.text.userName}} -->
+                </div>
+                <!-- {{msg.created_date| date: 'yyyy/MM/dd HH:mm:ss' }} -->
+                <div class="talk-sub" [class.myMsgMenu]="currentUser.id==msg.SendUserId" [attr.msgId]="msg.id">
+                  <span class="talk-cont">
+                    {{msg.Content}}
+                  </span>
+                  <span class="talk-ico"></span>
+                </div>
+              </div>
+
+              <!-- 图片展示-->
+              <div *ngIf="msg.MessageType==3" class="talk-cont-bar">
+                <div class="talk-user-name">
+                  <!-- {{msg.text.userName}} -->
+                </div>
+                <!-- {{msg.created_date| date: 'yyyy/MM/dd HH:mm:ss' }} -->
+                <div class="talk-sub" (click)='downloadAndOpen(msg.src,msg.FileOriginalName,msg.uuid)'>
+
+                  <img [src]="msg.src" width="100">
+                  <!-- <span>{{msg.src}}</span> -->
+                  <span class="talk-ico"></span>
+                </div>
+
+              </div>
+
+              <!--文件展示-->
+              <div *ngIf="msg.MessageType==4" class="talk-cont-bar">
+                <!-- {{msg.created_date| date: 'yyyy/MM/dd HH:mm:ss' }} -->
+                <div class="talk-sub" [class.myMsgMenu]="currentUser.id==msg.SendUserId" [attr.msgId]="msg.id">
+                  <div class="talk-sub" (click)='downloadAndOpen(msg.src,msg.FileOriginalName,msg.uuid)'>
+                    <span class="talk-cont" [ngSwitch]='msg.FileExt'>
+                      {{msg.FileOriginalName}}
+                      <img *ngSwitchCase="'ppt'" src="./assets/images/fileext/PPT.svg" class="fileimage">
+                      <img *ngSwitchCase="'pptx'" src="./assets/images/fileext/PPT.svg" class="fileimage">
+                      <img *ngSwitchCase="'xls'" src="./assets/images/fileext/Excel.svg" class="fileimage">
+                      <img *ngSwitchCase="'xlsx'" src="./assets/images/fileext/Excel.svg" class="fileimage">
+                      <img *ngSwitchCase="'doc'" src="./assets/images/fileext/Word.svg" class="fileimage">
+                      <img *ngSwitchCase="'docx'" src="./assets/images/fileext/Word.svg" class="fileimage">
+                      <img *ngSwitchCase="'pdf'" src="./assets/images/fileext/PDF.svg" class="fileimage">
+                      <img *ngSwitchCase="'mp3'" src="./assets/images/fileext/Audio.svg" class="fileimage">
+                      <img *ngSwitchCase="'mov'" src="./assets/images/fileext/Video.svg" class="fileimage">
+                      <img *ngSwitchCase="'mp4'" src="./assets/images/fileext/Video.svg" class="fileimage">
+                      <img *ngSwitchDefault src="./assets/images/fileext/File.svg" class="fileimage">
+                    </span>
+                    <span class="talk-ico"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </li>
+
+        </ul>
+      </div>
+
+      <div id="customer" class=" talk-list tab-pane " [class.active]="currentSendtype==1||currentSendtype==2||currentSendtype==4">
+
+        <ul>
+          <li *ngFor="let msg of msgList" [ngClass]="{talkright: currentUser.id==msg.SendUserId}">
+            <!--显示系统消息-->
+            <div *ngIf="msg.SendUserId==0" style="text-align: center">
+              <div style="height:36px">
+                {{msg.created_date| date: 'yyyy/MM/dd HH:mm:ss' }}
+              </div>
+              <div style="height:36px">
+                <span class="talk-cont-sys">
+                  {{msg.Content}}&nbsp;
+                  <!--客户确认关闭服务单-->
+                  <input *ngIf="(msg.Content.indexOf('关闭了服务单')>0||msg.Content.indexOf('请确认或重新打开')>0) && currentSendtype==1" (click)="confirmService()" class="btnOk" type="button"
+                    value="确定" />
+                  <input *ngIf="(msg.Content.indexOf('关闭了服务单')>0||msg.Content.indexOf('请确认或重新打开')>0) && currentSendtype==1" (click)="customerOpenService()" class="btnOk" type="button"
+                    value="取消" />
+                </span>
+              </div>
+            </div>
+            <!--非系统消息-->
+            <div *ngIf="msg.SendUserId!=0">
+              <div class="talk-user-img">
+                <img [src]="getUserLogoString(msg.fileaddress)" width="48" height="48" alt="" />
+              </div>
+              <!-- 正常消息 -->
+              <div *ngIf="msg.MessageType==0" class="talk-cont-bar">
+                <div class="talk-user-name">
+                  <!-- {{msg.text.userName}} -->
+                </div>
+                <!-- {{msg.created_date| date: 'yyyy/MM/dd HH:mm:ss' }} -->
+                <div class="talk-sub" [class.myMsgMenu]="currentUser.id==msg.SendUserId" [attr.msgId]="msg.id">
+                  <span class="talk-cont">{{msg.Content}}
+                  </span>
+                  <span class="talk-ico"></span>
+                </div>
+              </div>
+              <!-- 图片展示-->
+              <div *ngIf="msg.MessageType==3" class="talk-cont-bar">
+                <div class="talk-user-name">
+                  <!-- {{msg.text.userName}} -->
+                </div>
+                <!-- {{msg.created_date| date: 'yyyy/MM/dd HH:mm:ss' }} -->
+                <div class="talk-sub" (click)='downloadAndOpen(msg.src,msg.FileOriginalName,msg.uuid)'>
+
+                  <img [src]="msg.src" width="100">
+                  <!-- <span>{{msg.src}}</span> -->
+                  <span class="talk-ico"></span>
+                </div>
+
+              </div>
+
+              <!--文件展示-->
+              <div *ngIf="msg.MessageType==4" class="talk-cont-bar">
+                <!-- {{msg.created_date| date: 'yyyy/MM/dd HH:mm:ss' }} -->
+                <div class="talk-sub" [class.myMsgMenu]="currentUser.id==msg.SendUserId" [attr.msgId]="msg.id">
+                  <div class="talk-sub" (click)='downloadAndOpen(msg.src,msg.FileOriginalName,msg.uuid)'>
+                    <span class="talk-cont" [ngSwitch]='msg.FileExt'>
+                      {{msg.FileOriginalName}}
+                      <img *ngSwitchCase="'ppt'" src="./assets/images/fileext/PPT.svg" class="fileimage">
+                      <img *ngSwitchCase="'pptx'" src="./assets/images/fileext/PPT.svg" class="fileimage">
+                      <img *ngSwitchCase="'xls'" src="./assets/images/fileext/Excel.svg" class="fileimage">
+                      <img *ngSwitchCase="'xlsx'" src="./assets/images/fileext/Excel.svg" class="fileimage">
+                      <img *ngSwitchCase="'doc'" src="./assets/images/fileext/Word.svg" class="fileimage">
+                      <img *ngSwitchCase="'docx'" src="./assets/images/fileext/Word.svg" class="fileimage">
+                      <img *ngSwitchCase="'pdf'" src="./assets/images/fileext/PDF.svg" class="fileimage">
+                      <img *ngSwitchCase="'mp3'" src="./assets/images/fileext/Audio.svg" class="fileimage">
+                      <img *ngSwitchCase="'mov'" src="./assets/images/fileext/Video.svg" class="fileimage">
+                      <img *ngSwitchCase="'mp4'" src="./assets/images/fileext/Video.svg" class="fileimage">
+                      <img *ngSwitchDefault src="./assets/images/fileext/File.svg" class="fileimage">
+                    </span>
+                    <span class="talk-ico"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="right-bottom-panel" style="position: relative;  left: 0px;top: 0px;">
+    <!-- <textarea class="input-txt" #msg required></textarea> -->
+    <div class="row">
+      <div class="col-sm-6">
+        <!--emojibtn-->
+        <i class="emoji-toggle-button" (click)="toggled = !toggled" [(emojiPickerIf)]="toggled" [emojiPickerPreserveSelection]="false"
+          [emojiPickerDirection]="direction" [emojiPickerAutofocus]="true" (emojiPickerSelect)="handleSelection($event)">😄</i>
+        <img src="./assets/images/Folder.svg" (click)="selectFile($event)" class="filefolder">
+        <input type="file" class="selectfile" width="10" style="visibility:false" #transfile (change)="fileChange($event)" />
+      </div>
+    </div>
+
+    <div id="editable" class="inputor input-txt" contentEditable="true" (blur)="getpos()">{{ users |async | json }}
+    </div>
+    <div class="btn-bar">
+      <input class="btn" type="button" (click)="send($event.keyCode)" [disabled]="currentSendtype==3&&messageSendtype==2" value="发送(Enter)"
+      />
+    </div>
+  </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal " id="member" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;
+          </button> -->
+        <h4 class="modal-title" id="myModalLabel">
+          团队成员
+        </h4>
+      </div>
+      <div class="modal-body">
+        <!-- <div class="modal-cont-left"> -->
+        <div class="search-bar">
+          <input type="text" placeholder="搜索" #SearchBox />
+        </div>
+        <div class="list-panel">
+
+          <div class="data-list">
+            <ul class="img-list">
+
+              <li *ngFor="let item of userList">
+                <img [src]="getUserLogoString(item.fileaddress)">
+                <span>{{item.name}}</span>
+                <!-- <label class="check-box">
+                  <input type="checkbox">
+                  <span></span>
+                </label> -->
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消
+        </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          确定
+        </button>
+      </div> -->
+    </div>
+  </div>
+</div>
+<div class="modal " id="bill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">
+          指派单据
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="search-bar">
+          <input type="text" placeholder="搜索" #SearchBox />
+        </div>
+        <div class="list-panel">
+
+          <div class="data-list">
+            <ul class="img-list">
+
+              <li *ngFor="let item of userList">
+                <img [src]="getUserLogoString(item.fileaddress)">
+                <span>{{item.name}}</span>
+                <label class="check-box">
+                  <input type="radio" name="assignRadio" [attr.value]="item.id">
+                  <!-- (click)= "assignSelect($event,item)" -->
+                  <span></span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消
+        </button>
+        <button type="button" class="btn btn-primary" (click)="assignSelect()">
+          确定
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

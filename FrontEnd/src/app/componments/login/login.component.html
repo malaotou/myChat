@@ -1,0 +1,103 @@
+<div class="login-box">
+  <div class="login-main">
+      <a class="link-txt" [routerLink]="['/register']">注册</a>
+      <div class="login">
+        <div class="login-tab">
+          <div class="choose-tab tab-actvie">账户登录</div>
+          <div class="choose-tab">二维码登录</div>
+        </div>
+        <div class="tab-body">
+          <div class="tab-cont login-table">
+            <div class="msg-bar" [hidden]="isAuthed">账号密码验证失败！</div>
+            <table width='100%'>
+              <tr>
+                <td colspan="2">
+                  <input id="phone" type="text" #uname placeholder="请输入手机号" class="username" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input type="password" #pwd placeholder="请输入密码" class="password" />
+                </td>
+              </tr>
+              <tr style=" height:34px">
+                <td>
+                  <div class="check-sub  ">
+                    <label class="check-box checkbox-squ">
+                      <input type="checkbox" value='1' (click)='changeLoginType($event)'>
+                      <span></span>
+                    </label>
+                    <span>&nbsp;自动登录</span>
+                  </div>
+                </td>
+                <td>
+                  <a routerLink="/resetpwd" style=" margin-right:5px; color:#555;font-size:14px;">忘记密码</a>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input type="button" value="登  录" (click)="login(uname.value,pwd.value)" class="loginbtn" />
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="tab-cont scan-tab" style="display:none">
+            <img src="./assets/images/233.png" />
+            <span>请用微信扫面二维码登录</span>
+          </div>
+    
+        </div>
+    
+    
+    
+    
+    
+    
+      </div>
+    
+    
+    </div>
+    
+    
+    
+    
+    <div style="width:100%;display:none">
+      <h1 align="center">用户注册</h1>
+      <div align="center" style="-webkit-app-region:no-drag">
+        <table align="center" width="400">
+          <tr>
+            <td colspan="2">
+              <span style="color:red">*</span>
+              <input type="text" placeholder="请输入手机号" name="user" #phone>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style="color:red">*</span>
+              <input type="text" placeholder="请输入验证码" name="verfiycode" #verfiycode>
+            </td>
+            <td>
+              <input type="button" value="获取验证码" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style="color:red">*</span>
+              <input type="password" placeholder="请输入密码" name="password" #password>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" name="hb1" value="ft" checked="checked">
+              <span>我已经认证阅读并同意《服务条款》 </span>
+            </td>
+          </tr>
+          <tr>
+            <input type="button" value="注册" click="login(username.value,password.value)">
+          </tr>
+    
+        </table>
+      </div>
+  </div>
+  
+</div>

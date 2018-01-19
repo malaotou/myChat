@@ -1,0 +1,103 @@
+:host{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.link-txt{ color: #fff;-webkit-app-region:no-drag}
+table
+{
+    border:0
+}
+tr
+{
+    border:0
+}
+td{
+    border: 0;
+    padding: 3px;
+}
+input[type="text"],input[type="password"] {
+    height: 28px;
+}
+
+.login-box{position: absolute; z-index: 1; width: 100%; height: 100%; overflow: hidden; background:url(../../../assets/images/login-bg.png) bottom center no-repeat; background-size: 100% 100%;}
+.login-main{ margin-top:30px; width: 100%; height: 100%; overflow:hidden;  -webkit-app-region:drag}
+.login{
+    width: 402px;
+    height: 300px;
+    margin: 160px auto;
+    border-radius:6px;
+    background-color: #F6F6FA;
+    border: 1px solid #DBDBEA;
+
+    -webkit-app-region:no-drag
+}
+
+.choose-tab{
+    width: 200px;
+    height: 40px;
+    line-height:40px;
+    text-align: center;
+    float: left;
+    color: #666;
+    font-size: 16px;
+    background: -webkit-linear-gradient(#E7E7ED, #DBDBEA, #E9E9ED);
+    border-bottom: 1px solid #DBDBEA;
+    overflow: visible;
+    cursor:pointer
+
+}
+.tab-actvie{ height: 40px; border-bottom:none;  background: -webkit-linear-gradient(#DBDBEA, #F6F6FA);}
+.login-tab{ height: auto; overflow: hidden}
+.login-table{
+    margin: 40px auto 0;
+    width: 300px;
+    height: auto;
+    text-align: center;
+}
+.login-tab >:last-child{ border-top-right-radius:4px;   border-left: 1px solid #CACAD9 }
+.login-tab >:first-child{border-top-left-radius:4px;}
+.login-table tr{
+    height: 48px;
+}
+
+.username, .password{
+    width: 240px;
+    height: 40px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0 3px;
+    font-size: 14px;
+}
+
+.autologin{
+    font-weight: normal;
+    font-size: 14px;
+    margin: 0;
+}
+
+.loginbtn{
+    width: 240px;
+    height: 40px;
+    background-color: #1382DC;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #066eb4
+}
+.loginbtn:active,.loginbtn:hover{ background:#0E6BD1; }
+.scan-tab{ width: 400px; height: auto; padding: 20px 0; overflow: hidden; text-align: center}
+.scan-tab img{ width: 150px; height: 150px;}
+.scan-tab span{ margin-top: 10px; width: 100%; font-size: 16px;  display: block}
+
+.check-box{margin: 0; float: left; width: 16px; height: 16px;}
+.check-sub{ height: auto; overflow: hidden; padding-left:27px }
+.check-sub span{ height: 16px; line-height: 16px; float: left; font-size: 14px;}
+
+/* .checkbox{  height: 16px; text-align:left }
+.checkbox input[type="checkbox"]{ margin-left: 0} */
+.tab-cont{ position: relative}
+.error{border: 1px solid #FF2626; box-shadow: 0 0 3px #FF2626 }
+.msg-bar{ position: absolute; top: -20px; width: 100%; text-align: center; color:#FF2626  }
+.checkbox-squ input[type="checkbox"] + span{border-radius:2px; width: 16px; height: 16px; line-height: 16px;  }
+

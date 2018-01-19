@@ -1,0 +1,49 @@
+.row {
+    width: 100% !important;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+
+.col {
+    height: 100% !important;
+}
+
+.container-fluid {
+    height: 100%;
+}
+
+.firstcol {
+    background: #2A2E33;
+    width: 60px;
+}
+
+.chatContent {
+    position: relative;
+    right: 0;
+    left: 0;
+    width: 90%;
+}
+
+/** 右上角最小化 最大化 关闭 **/
+.close-ico span{
+
+   padding: 3px 10px; text-align: center; cursor: pointer; color: #333; font-size: 14px; display: block;-webkit-app-region:no-drag
+}
+.close-ico li:hover{ background: #eee} 
+.close-ico
+{
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    overflow:hidden;
+    z-index: 9999;
+    position: absolute;
+    right: 0;
+}
+.close-ico li{
+    float:left;
+}
+.close-ico li:last-child span:hover{ color: #fff;  background:rgb(248, 33, 33)}

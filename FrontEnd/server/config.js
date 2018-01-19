@@ -1,0 +1,20 @@
+module.exports={
+    api:{
+            host:'localhost',
+            port:'3000'
+        },
+    db:{
+        host:'192.168.50.235',//192.168.11.235
+        user:'root',
+        password:'Hello@158.cn',//Hello@158.cn
+        port:'3306',
+        database:'weChat'//weChatDev、weChatPRD、weChatUAT
+    },
+    jwt:{
+        encryptStr:'password'
+    },
+    pager:{
+        defaultPagerSize:10
+    }
+
+}

@@ -1,0 +1,22 @@
+:host,form{ display: block; width: 100%; height: 100%; overflow: hidden}
+
+/* .reg-panel table td{ position: relative; height: 50px; padding: 0 3px}
+input[type='text'],input[type='password']{ width: 100%; height: 40px; font-size: 14px; padding: 0 3px; border-radius:4px;  border: 1px solid #ccc}
+.reqmsg{ color:#FF0000; font-size: 16px; font-weight: bold}*/
+.btn-yzm { margin: 0;  height: 40px; background: #e2e2e2; color:#888; border: 1px solid #ccc}
+input [type="checkbox"]{ display: block; width: 16px; height: 16px;}
+.btn-reg{ margin: 0; width: 100%; height: 40px; font-size: 16px; border-radius:4px;  background:#1382DC;border: 1px solid #066eb4; color: #fff }
+.btn-reg:active{ background:#0E6BD1; color: #fff }
+/* .txt-conm *{ font-size: 14px; }
+.txt-conm input[type='checkbox']{ width: 16px; height: 16px; }
+.txt-conm div{ margin-left: 10px} 
+.link-txt{ position: absolute; right: 30px; top:30px; color: #1382DC}
+.pwd-ico{ position: absolute; right:10px; top:14px;  width: 20px; height: 20px;  z-index: 999; cursor: pointer;  }
+.eye-open{ background: url(../../../assets/images/eye-open.png) center no-repeat; background-size:90% }
+.eye-close{background: url(../../../assets/images/eye-close.png) center no-repeat; background-size:90% }
+
+.msg-tip{ position: absolute; width: 150px; right: -150px; top:16px;  color: #FF2626} */
+.check-sub{ height: auto; overflow: hidden; }
+.checkbox-squ{  float: left}
+.check-sub span{ height: 16px; line-height: 16px; float: left; font-size: 14px;}
+.checkbox-squ input[type="checkbox"] + span{border-radius:2px; width: 16px; height: 16px; line-height: 16px;  }

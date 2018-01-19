@@ -1,0 +1,28 @@
+<ul class="close-ico">
+  <!-- <li>
+    <span (click)="test()">XXX</span>
+  </li> -->
+  <li>
+    <span (click)="min()">─</span>
+  </li>
+  <li>
+    <span (click)="max()">☐</span>
+  </li>
+  <li>
+    <span (click)="close()">✕</span>
+  </li>
+</ul>
+
+
+<table class="box" width="100%" height=100% border="0" cellspacing="0" cellpadding="0">
+
+  <tr>
+    <td width="60" [style.display]="isAuthened?'table-cell':'none'">
+      <app-leftnavtab></app-leftnavtab>
+    </td>
+    <td width="100%" height="100%">
+      <router-outlet></router-outlet>
+    </td>
+  </tr>
+
+</table>

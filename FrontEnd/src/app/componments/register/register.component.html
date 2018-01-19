@@ -1,0 +1,55 @@
+<form [formGroup]="regForm ">
+<div class="reg-box Big">
+  <a class="link-txt" [routerLink]="['/login']">登录</a>
+  <div class="page-title">用户注册</div>
+  <div class="reg-panel">
+    <table width="100%">
+      <tr>
+        <td class="reqmsg">*</td>
+        <td colspan="2">
+          <input type="text" placeholder="请输入手机号" name="user" #phone formControlName="phone">
+          <span class="msg-tip" [hidden]="!error"> {{errorMsg}}</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="reqmsg">*</td>
+        <td>
+          <input type="text" formControlName="verifyCode" placeholder="请输入验证码" name="verfiycode" #verfiycode>
+        </td>
+        <td>
+          <button class="btn btn-yzm  " type="button" value="获取验证码" [disabled]="!regForm .controls['verifyCode'].valid">获取验证码</button>
+        </td>
+      </tr>
+      <tr>
+        <td class="reqmsg">*</td>
+        <td colspan="2">
+          <input id="password" formControlName="password" type="password" placeholder="请输入密码" name="password" #password>
+          <div class="pwd-ico eye-open" (click)="changeStatus()" [ngClass]="{'eye-close':isOpen}"></div>
+        </td>
+      </tr>
+      <tr >
+        <td></td>
+        <td colspan="2" align="center" class="txt-conm">
+            <div class="check-sub  ">
+                <label class="check-box checkbox-squ">
+                    <input   type="checkbox" name="hb1" value="ft" checked="checked">
+                    <span></span>
+                </label>
+                <span>我已经认证阅读并同意
+                    <a href="#">《服务条款》</a>
+                  </span>
+            </div>
+           
+          
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="2">
+          <button  class=" btn-reg" [ngStyle]="!regForm.valid && {'background-color':'#ccc'}" type="button" value="注册" (click)="register(phone.value,password.value)" [disabled]="!regForm.valid">注册</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+</form>

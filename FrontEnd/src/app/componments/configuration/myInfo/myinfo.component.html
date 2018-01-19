@@ -1,0 +1,70 @@
+<form  (ngSubmit)="save()" #myForm="ngForm" novalidate>
+<div class="myinfo-title ">
+  <span>
+    个人信息
+  </span>
+</div>
+<div class="myinfo-content ">
+  <table style="margin: 0 auto; width:500px;">
+    <tr>
+      <td width="130" rowspan="4" align="center">
+        <!-- <img class="myhead" src='assets/images/myhead.png'> -->
+        <img class="myhead" [src]='getUserLogoString(avator)'>
+        <input  type="button" value="修改头像" style="display:none;"  class="btn-lightblue changeimg edit-show" onclick="document.getElementById('file').click()"> 
+        <input   type="file" style="display:none" value="修改头像" id="file" (change)="fileChange($event)" accept=".jpg,.png">
+      </td>
+      <td width="100">昵称</td>
+      <td>
+        <span class="d-color">{{model.nickname}}</span>
+        <input type="text" style="display:none;"  class="form-control edit-show"  placeholder="请输入昵称" 
+         name="nickname"
+       [(ngModel)]="model.nickname" #nickname="ngModel" required>  
+      </td>
+    </tr>
+    <tr>
+      <td>
+        真实姓名
+      </td>
+      <td>
+        <span class="d-color">{{model.name}}</span>
+        <input type="text" style="display:none;"  class="form-control edit-show"  placeholder="请输入真实姓名" 
+        name="name"
+      [(ngModel)]="model.name" #name="ngModel" required>  
+      </td>
+    </tr>
+    <tr>
+      <td>
+        性别
+      </td>
+      <td>
+          
+        <!-- <input type="radio" value="男"> 男
+        <input type="radio" value="女"> 女 -->
+        <span *ngIf="model.gender!==null" class="d-color">{{model.gender===1?"女":"男"}}</span>
+        <label *ngFor="let g of genderList" style="display:none;" class="edit-show" >
+          <input type="radio" (change)="model.gender=g.id" name="model.gender" [checked]="model.gender===g.id">{{g.name}}
+        </label>
+       
+        
+      </td>
+    </tr>
+    <tr>
+      <td>
+        手机号
+      </td>
+      <td>
+        <span class="d-color">{{model.account}}</span>
+        <input type="text" style="display:none;" pattern="^[0-9]*$" minlength="11" maxlength="11"  class="form-control edit-show"  placeholder="请输入手机号" 
+        name="account"
+      [(ngModel)]="model.account" #account="ngModel" readonly required>  
+      </td>
+    </tr>
+  </table>
+  <div class="myinfo-footer">
+    <input type="button"  id="btnEdit" value="编辑" class="savebtn btn-lightblue  btn" (click)="editClick()">
+    <input type="submit" id="btnSave" style="display:none;" class="savebtn btn-lightblue btn edit-show" [disabled]="!myForm.form.valid" value="保存">
+    <!-- <input type="button" value="测试" (click)="test()"> -->
+    <!-- <p>Form value: {{ myForm.value | json }}</p> -->
+  </div>
+</div>
+</form>

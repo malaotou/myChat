@@ -1,0 +1,84 @@
+<form (ngSubmit)="onChangePwd()" #myForm="ngForm" novalidate> 
+        <div class="form-group">
+<div class="myinfo-title ">
+  <span>
+      修改密码
+  </span>
+</div>
+<div class="myinfo-content ">
+  <table style="margin: 0 auto; width:400px;">
+      <tr>
+          <td style="width:100px">
+              旧密码
+          </td>
+          <td style="">
+                <input type="password"  class="form-control"  placeholder="请输入旧密码" 
+                maxlength="16" name="OldPwd"
+               [(ngModel)]="model.OldPwd" #OldPwd="ngModel" required>  
+               <span [hidden]="OldPwd.valid || OldPwd.pristine" style="color:red;">
+              旧密码不能为空
+                </span>
+               
+          </td>
+      </tr>
+      <tr>
+          <td>
+              新密码
+          </td>
+          <td>
+                <input type="password"  class="form-control"  placeholder="请输入新密码" 
+                maxlength="16" id="NewPwd" name="NewPwd"
+               [(ngModel)]="model.NewPwd" #NewPwd="ngModel" required validateEqual="Pwd2" reverse="true">
+               <span [hidden]="NewPwd.valid || NewPwd.pristine" style="color:red;">
+                    新密码不能为空
+               </span> 
+          </td>
+      </tr>
+      <tr>
+          <td>
+              确认密码
+          </td>
+          <td>
+            <input type="password" class="form-control" placeholder="请输入确认密码"
+            maxlength="16" id="Pwd2" name="Pwd2"
+            [(ngModel)]="model.Pwd2" #Pwd2="ngModel" validateEqual="NewPwd" required>
+            <!-- <span [hidden]="Pwd2.valid || Pwd2.pristine" style="color:red;">
+                    
+               </span> -->
+               <span *ngIf="Pwd2.invalid && (Pwd2.dirty || Pwd2.touched)">
+               <span *ngIf="Pwd2.errors.required" style="color:red;">
+                    确认密码不能为空
+               </span>
+               <span *ngIf="!Pwd2.errors.required" style="color:red;">
+                    确认密码必须与新密码相同
+               </span>
+               </span>
+          </td>
+      </tr>
+      <!-- <span ng-show="myForm.$invalid">{{getErrorMessage(myForm.$error)}}</span> -->
+  </table>
+ <!-- <div [hidden]="myForm.OldPwd.valid || myForm.OldPwd.pristine"
+ class="alert alert-danger">
+ OldPwd is required
+</div> -->
+<!-- 
+     <input type="text"  class="form-control"  placeholder="请输入旧密码" 
+  maxlength="4" required name="OldPwd"
+ [(ngModel)]="model.OldPwd" #name="ngModel" > 
+ <div *ngIf="OldPwd.invalid && (OldPwd.dirty || OldPwd.touched)"
+class="alert alert-danger">
+<div *ngIf="OldPwd.errors.required">
+Name is required.
+</div>
+<div *ngIf="OldPwd.errors.maxlength">
+Name must be at least 4 characters long.
+</div>
+</div> -->
+  <div class="myinfo-footer">
+          <!-- <input type="submit"  value="保存" class="savebtn " > -->
+          <!-- (click)="test(OldPwd.value)" btn-success-->
+          <button type="submit" class="savebtn btn-lightblue btn " [disabled]="!myForm.form.valid">保存</button>
+  </div>
+</div>
+</div>
+</form>

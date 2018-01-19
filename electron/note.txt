@@ -1,0 +1,7 @@
+﻿npm install icon-extractor -- 用于处理文件的上传。
+用IPC 通讯获取文件Icon 信息。
+
+拷贝所有文件至打包目录
+1、npm install
+
+2、electron-packager ./ --platform=win32 --arch=ia32

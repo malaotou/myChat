@@ -1,0 +1,19 @@
+{
+  "name": "deer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js",
+    "packager": "electron-packager ./ --platform='Win32' --electron-version=1.6.6  --overwrite"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.7.0"
+  },
+  "dependencies": {
+    "core-js": "^2.4.1",
+    "electron": "^1.7.9",
+    "express": "^4.16.2",
+    "generic-pool": "^3.2.0",
+    "request": "^2.83.0",
+    "zone.js": "^0.8.14"
+  }
+}

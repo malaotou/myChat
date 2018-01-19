@@ -1,0 +1,33 @@
+:host{
+    /* width: 100%; */
+    height: 100%;
+    display: block;
+    margin-left: 280px;
+}
+
+
+.myhead{
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    border:  1px solid #d4d4d4;
+}
+input.changeimg{
+    display: block;
+    margin: 5px auto;
+    width: 60px;
+    height: 24px;
+    border-radius:4px;
+    font-size:12px
+}
+/*表单验证样式，输入框前面加绿条与红条*/
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948!important; /* green */
+  }
+ 
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #e93835; /* red */
+  }
+  .btn{ float: none; border: 1px solid #066eb4}
+  .btn:hover,.btn:visited,.btn:focus{ color: #fff}
+

@@ -1,0 +1,7 @@
+:host{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.sendbtn{ border-radius:4px }
+.sendbtn:active{ background:#0E6BD1}

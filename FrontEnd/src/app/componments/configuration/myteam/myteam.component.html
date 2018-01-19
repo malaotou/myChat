@@ -1,0 +1,189 @@
+<div class="myinfo-title ">
+    <div class="alert alert-danger alert-dismissable" [hidden]="!nameExists" id="div_alert">
+        <button type="button" class="close" data-dismiss="alert"
+            aria-hidden="true">
+          &times;
+        </button>
+        <span  >该企业名称已被注册</span>
+      </div>
+  <span >
+    团队信息
+  </span>
+</div>
+<div class="myinfo-content ">
+  <form #myForm="ngForm" (ngSubmit)='save($event)' novalidate>
+    
+    <table style="margin: 0 auto; width:100%; max-width:600px">
+      <tr>
+        <td>
+          团队名称
+        </td>
+        <td colspan="2">
+          <input class="form-control"type="text"  width="210px;"
+            placeholder="请输入团队名称" (blur)="checkName(currentgroup.name)" 
+            name="name"
+            [(ngModel)]="currentgroup.name" #name="ngModel" required>
+         
+        </td>
+        <td rowspan="2" style="width:100px;">
+          <img id="image" alt="" class="logo-img" [src]="logo" (click)="changeLogo()" title="团队Logo" />
+        </td>
+      </tr>
+      <tr style="display:none">
+        <td>
+          logo
+        </td>
+        <td>
+          <!-- <input type="text" class="form-control" placeholder="请上传企业logo"> -->
+          <input #logofile id='logofile' type="file" class="btn-lightblue changeimg" value="修改头像" (change)="fileChange($event)"
+            accept=".jpg,.png">
+        </td>
+        <td>
+          <!-- <input type="button" value="浏览" class="form-control"> -->
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          团队简介
+        </td>
+        <td colspan="2">
+          <textarea class="form-control" placeholder="请输入内容"
+          name="description"
+          [(ngModel)]="currentgroup.description" #description="ngModel">{{currentgroup.description}}</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>团队成员</td>
+        <td align="left">
+          <input type="button" class="btn btn-default btn-member" data-toggle="modal" data-target="#myModal" value="点这里">
+        </td>
+      </tr>
+    </table>
+    <div class="myinfo-footer">
+      <input type="submit" value="保存" class="savebtn btn-lightblue" [disabled]="nameExists||!myForm.form.valid">
+    </div>
+  </form>
+  <div  class="list-panel list-team">
+      <div class="img-list-bar">
+          <ul class="img-list">
+                  <li *ngIf="groupList.length>0" >
+                    <div (click)="createGroup(0)">
+                      <img src="./assets/images/add.png">
+                      <span>创建团队</span>
+                    </div>
+                  </li>
+                  <li *ngFor="let item of groupList">
+                    <div (click)="createGroup(item.id)" class="groupitem">
+                          <img src='./assets/images/Cancel.svg' class="deleteStyle" (click)='delGroup(item.id)'>
+                          <img [src]="getGroupLogoString(item.fileaddress)">
+                          <span>{{item.name}}</span>
+                    </div>
+                  </li>
+                  <!-- <li data-toggle="modal" >
+                      <img    src="./assets/images/Windows Client_48px.png">
+                      <span>三星电脑</span>
+              </li> -->
+          </ul>
+          <!-- {{nameExists}}<br>
+          {{nameExists||!myForm.form.valid}}<br>
+          {{myForm.form.valid}} 
+          {{currentgroup.id}}-->
+  </div>
+  </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  &times;
+              </button>
+              <h4 class="modal-title" id="myModalLabel">
+                  团队成员
+              </h4>
+          </div>
+          <div class="modal-body">
+              <div class="modal-cont-left">
+                <div class="search-bar" ><input  type="text" placeholder="搜索" #SearchBox (keyup)='SearchUser(SearchBox.value)'/></div>
+                <div class="list-panel">
+                  <div class="msg-sub" [hidden]='!isInviteUser'>您所搜索的用户不存在或未注册，是否<a data-toggle="modal" data-target="#invite-Modal">邀请加入</a> </div>
+                  <div class="data-list">
+                    <ul>
+                      
+                      <li  *ngFor= 'let item of users'   >
+                        <a *ngIf="currentUser.id!=item.id">
+                          <img class="com-logo" [src]="getUserLogoString(item.fileaddress)" alt="" />
+                          <span class="user-name" >{{item.name}}</span>
+                          
+                          <label class="check-box">
+                            <input   type="checkbox" (click)= "memberSelect($event,item)" [checked]='checkSelectStatus(item)' >
+                            <span></span></label>
+                        </a>
+                      </li>
+                      
+                    </ul>
+      
+                  </div>
+                </div>
+                  
+              </div>
+              <div class="modal-cont-right">
+                <div class="list-panel">
+                  <div class="data-list">
+                    <ul>
+                      <li *ngFor= 'let item of currentUsers' >
+                        <a >
+                          <img class="com-logo" [src]="getUserLogoString(item.fileaddress)" alt=""/>
+                          <span class="user-name" >{{item.name}}</span>
+                          <span *ngIf="currentUser.id!=item.id" class="check-box checked-box-del" (click)= "removeMemberSelect(item)">✗</span>
+                        </a>
+                      </li>
+                      
+                      
+                    </ul>
+      
+                  </div>
+                </div>
+
+
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消
+              </button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">
+                  确定
+              </button>
+          </div>
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+</div>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="invite-Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    团队成员
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-cont">
+                  手机号码：<input type="text" placeholder="请输入被邀请人手机号码"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                
+                <button type="button" class="btn btn-primary">
+                    发送邀请
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+  </div>
